@@ -8,12 +8,11 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     private lateinit var _binding: VB
     abstract fun bindingInflater(): VB
-
-    abstract fun setUp()
+    protected val binding :VB
+        get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUp()
         _binding = bindingInflater()
         setContentView(_binding.root)
     }
