@@ -1,7 +1,8 @@
-package com.frenchfriesclan.mikmok
+package com.frenchfriesclan.mikmok.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.frenchfriesclan.mikmok.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
