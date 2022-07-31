@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_video_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/mikmok_art2"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/mikmok_art_style"
+            android:paddingTop="@dimen/margin_very_large"
+            android:paddingHorizontal="@dimen/margin_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_category"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:scaleType="fitXY" android:padding="2dp"
+                app:strokeWidth="4dp" app:strokeColor="@color/white_87"
+                android:src="@drawable/category_image"
+                app:shapeAppearanceOverlay="@style/category_image_rounded"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray" android:textSize="16sp"
+                android:text="Category"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="@dimen/margin_normal"
+                app:layout_constraintStart_toEndOf="@id/image_category"
+                app:layout_constraintTop_toTopOf="@id/image_category" />
+
+            <TextView
+                android:id="@+id/text_category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" android:textSize="20sp"
+                android:text="Historical Feature Films"
+                android:fontFamily="@font/poppins_medium"
+                app:layout_constraintStart_toStartOf="@id/category"
+                app:layout_constraintTop_toBottomOf="@id/category"
+                app:layout_constraintBottom_toBottomOf="@id/image_category"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/video_url"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="4:3"
+                android:scaleType="fitXY" android:padding="2dp"
+                app:strokeWidth="4dp" app:strokeColor="@color/white_87"
+                android:src="@drawable/mikmok_url2"
+                app:shapeAppearanceOverlay="@style/category_image_rounded"
+                android:layout_marginTop="@dimen/margin_very_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_category_title" />
+
+            <Button
+                android:id="@+id/button_play"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/ic_play_filled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/video_url"
+                app:layout_constraintBottom_toBottomOf="@id/video_url" />
+
+            <Button
+                android:id="@+id/button_thumb_up"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="@drawable/ic_thumbs_up"
+                app:layout_constraintStart_toStartOf="@id/video_url"
+                app:layout_constraintTop_toBottomOf="@id/video_url" />
+
+            <Button
+                android:id="@+id/button_thumb_down"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_thumbs_down"
+                android:layout_marginStart="@dimen/margin_very_large"
+                app:layout_constraintStart_toEndOf="@id/button_thumb_up"
+                app:layout_constraintTop_toTopOf="@id/button_thumb_up" />
+
+            <Button
+                android:id="@+id/button_comment"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_comment"
+                android:layout_marginStart="@dimen/margin_very_large"
+                app:layout_constraintEnd_toEndOf="@id/video_url"
+                app:layout_constraintTop_toTopOf="@id/button_thumb_up" />
+
+            <TextView
+                android:id="@+id/text_video_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textColor="@color/white_87" android:textSize="20sp"
+                android:text="Les aventures de Robinson Crusoé"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintStart_toStartOf="@id/button_thumb_up"
+                app:layout_constraintEnd_toStartOf="@id/text_video_year"
+                app:layout_constraintTop_toBottomOf="@id/button_thumb_up" />
+
+            <TextView
+                android:id="@+id/text_video_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="1914"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_video_title" />
+
+            <TextView
+                android:id="@+id/text_video_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray" android:textSize="14sp"
+                android:text="Charlie and another man compete in trying to help a young lady cross a muddy street. The rival finds a wooden plank which Charlie takes from him. They fight over an umbrella belonging to the rival. A policeman settles the dispute, ultimately arresting the rival. An innocent tramp is pushed into the lake."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_video_title" />
+
+            <TextView
+                android:id="@+id/video_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray" android:textSize="14sp"
+                android:text="Video duration"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_video_description" />
+
+            <TextView
+                android:id="@+id/text_video_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_87" android:textSize="14sp"
+                android:text="1:34"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_marginStart="@dimen/margin_small"
+                app:layout_constraintStart_toEndOf="@id/video_duration"
+                app:layout_constraintTop_toTopOf="@id/video_duration" />
+
+
+            <TextView
+                android:id="@+id/video_directed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray" android:textSize="14sp"
+                android:text="Directed by: "
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/video_duration" />
+
+            <TextView
+                android:id="@+id/text_video_directed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_87" android:textSize="14sp"
+                android:text="D.W. Griffith"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_marginStart="@dimen/margin_small"
+            app:layout_constraintStart_toEndOf="@id/video_directed"
+            app:layout_constraintTop_toTopOf="@id/video_directed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
