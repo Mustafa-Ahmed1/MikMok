@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MikMok</string>
+    <string name="category">Category</string>
+    <string name="video_duration">Video duration</string>
+    <string name="directed_by">Directed by:</string>
+    <string name="description_sample">Charlie and another man compete in trying to help a young lady cross a muddy street. The rival finds a wooden plank which Charlie takes from him. They fight over an umbrella belonging to the rival. A policeman settles the dispute, ultimately arresting the rival. An innocent tramp is pushed into the lake.</string>
+    <string name="duration_sample">1:34</string>
+    <string name="director_sample">D.W. Griffith</string>
+    <string name="title_sample">Les aventures de Robinson Crusoé</string>
+    <string name="year_sample">1914</string>
+    <string name="category_sample">Historical Feature Films</string>
 </resources>
