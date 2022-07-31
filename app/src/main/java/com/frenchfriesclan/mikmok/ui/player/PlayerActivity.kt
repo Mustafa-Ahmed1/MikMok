@@ -1,11 +1,18 @@
 package com.frenchfriesclan.mikmok.ui.player
 
+import android.provider.MediaStore
 import android.util.Log
 import com.frenchfriesclan.mikmok.databinding.ActivityPlayerBinding
+import com.frenchfriesclan.mikmok.model.DataManger
 import com.frenchfriesclan.mikmok.model.FakeDataGenerator
+import com.frenchfriesclan.mikmok.model.domain.APIResponse
 import com.frenchfriesclan.mikmok.ui.base.BaseActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.gson.Gson
+import okhttp3.*
+import java.io.IOException
+import kotlin.math.log
 
 class PlayerActivity : BaseActivity<ActivityPlayerBinding>() {
     var player : ExoPlayer? = null
@@ -21,7 +28,6 @@ class PlayerActivity : BaseActivity<ActivityPlayerBinding>() {
         Log.i("PLAYER_ACTIVITY","STARTED!")
         initializePlayer()
     }
-
 
     private fun initializePlayer() {
         player = ExoPlayer.Builder(this)
