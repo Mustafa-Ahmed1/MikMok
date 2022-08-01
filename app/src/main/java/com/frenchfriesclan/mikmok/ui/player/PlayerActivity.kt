@@ -1,25 +1,15 @@
 package com.frenchfriesclan.mikmok.ui.player
 
-import android.provider.MediaStore
 import android.util.Log
 import com.frenchfriesclan.mikmok.databinding.ActivityPlayerBinding
-import com.frenchfriesclan.mikmok.model.DataManger
-import com.frenchfriesclan.mikmok.model.FakeDataGenerator
-import com.frenchfriesclan.mikmok.model.domain.APIResponse
 import com.frenchfriesclan.mikmok.ui.base.BaseActivity
 import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.gson.Gson
-import okhttp3.*
-import java.io.IOException
-import kotlin.math.log
 
 class PlayerActivity : BaseActivity<ActivityPlayerBinding>() {
     var player : ExoPlayer? = null
     private var playWhenReady = true
     private var currentItem = 0
     private var playbackPosition = 0L
-    val currentVideo = FakeDataGenerator.getVideo() // TODO: get real data instead of this fake data generator
 
     override fun bindingInflater() = ActivityPlayerBinding.inflate(layoutInflater)
 
@@ -34,11 +24,11 @@ class PlayerActivity : BaseActivity<ActivityPlayerBinding>() {
             .build()
             .also { exoPlayer ->
                 binding.videoView.player = exoPlayer
-                val mediaItem = MediaItem.fromUri(currentVideo)
-                exoPlayer.setMediaItem(mediaItem)
-                exoPlayer.playWhenReady = playWhenReady
-                exoPlayer.seekTo(currentItem, playbackPosition)
-                exoPlayer.prepare()
+//                val mediaItem = MediaItem.fromUri(currentVideo)
+//                exoPlayer.setMediaItem(mediaItem)
+//                exoPlayer.playWhenReady = playWhenReady
+//                exoPlayer.seekTo(currentItem, playbackPosition)
+//                exoPlayer.prepare()
             }
     }
 
