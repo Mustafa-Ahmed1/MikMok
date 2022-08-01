@@ -56,5 +56,4 @@ class PlayerActivity : BaseActivity<ActivityPlayerBinding>() {
         player = null
     }
 
-
 }
