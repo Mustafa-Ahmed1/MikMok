@@ -5,17 +5,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.frenchfriesclan.mikmok.R
-import com.frenchfriesclan.mikmok.databinding.ActivityPlayerBinding
-import com.frenchfriesclan.mikmok.model.domain.Video
+import com.frenchfriesclan.mikmok.databinding.VideoItemBinding
+import com.frenchfriesclan.mikmok.model.response.Feed
+import com.frenchfriesclan.mikmok.model.response.Video
 
-class VideoAdapter(private val list: List<Video>): RecyclerView.Adapter<VideoAdapter.VideoViewHolder>(){
+class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdapter.VideoViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_player, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.video_item, parent, false)
         return VideoViewHolder(view)
     }
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val currentVideo = list[position]
+        holder.binding.apply {
+            textCategoryTitle.text = currentVideo.category
+            textVideoTitle.text = currentVideo.title
+            textVideoDescription.text = currentVideo.description
+
+        }
     }
 
     override fun getItemCount(): Int = list.size
@@ -25,7 +32,9 @@ class VideoAdapter(private val list: List<Video>): RecyclerView.Adapter<VideoAda
 //    }
 
      class VideoViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem){
-        val binding = ActivityPlayerBinding.bind(viewItem)
+        val binding = VideoItemBinding.bind(viewItem)
     }
+
+
 
 }

@@ -3,6 +3,7 @@ package com.frenchfriesclan.mikmok.ui
 import android.util.Log
 import com.frenchfriesclan.mikmok.databinding.ActivityMainBinding
 import com.frenchfriesclan.mikmok.model.DataManagerImpl
+import com.frenchfriesclan.mikmok.ui.adapter.VideoAdapter
 import com.frenchfriesclan.mikmok.ui.base.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -19,5 +20,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
             Log.i("MAIN_ACTIVITY",feeds.toString())
         }
+        val adapter = VideoAdapter(dataManger.getFeeds())
+        binding.recyclerViewVideos.adapter = adapter
+
     }
 }
