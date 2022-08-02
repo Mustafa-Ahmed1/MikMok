@@ -8,6 +8,7 @@ import com.frenchfriesclan.mikmok.R
 import com.frenchfriesclan.mikmok.databinding.VideoItemBinding
 import com.frenchfriesclan.mikmok.model.response.Feed
 import com.frenchfriesclan.mikmok.model.response.Video
+import com.frenchfriesclan.mikmok.util.extension.toTimeForm
 
 class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdapter.VideoViewHolder>(){
 
@@ -21,7 +22,9 @@ class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdap
             textCategoryTitle.text = currentVideo.category
             textVideoTitle.text = currentVideo.title
             textVideoDescription.text = currentVideo.description
-
+            textVideoYear.text = currentVideo.videos!![0].year.toString()
+            textVideoDirector.text = currentVideo.videos!![0].director
+            textVideoDuration.text = currentVideo.videos!![0].durationInSeconds?.toTimeForm()
         }
     }
 
