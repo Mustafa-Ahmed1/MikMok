@@ -20,8 +20,8 @@ class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdap
         val currentVideo = list[position]
         holder.binding.apply {
             textCategoryTitle.text = currentVideo.category
-            textVideoTitle.text = currentVideo.title
-            textVideoDescription.text = currentVideo.description
+            textVideoTitle.text = currentVideo.videos!![0].title
+            textVideoDescription.text = currentVideo.videos!![0].description
             textVideoYear.text = currentVideo.videos!![0].year.toString()
             textVideoDirector.text = currentVideo.videos!![0].director
             textVideoDuration.text = currentVideo.videos!![0].durationInSeconds?.toTimeForm()
