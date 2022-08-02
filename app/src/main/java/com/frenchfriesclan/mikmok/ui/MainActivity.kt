@@ -14,14 +14,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onStart()
         dataManger.requestVideoFeed() { isSuccess ->
             val feeds = if (isSuccess) {
-                dataManger.getFeeds()
+                val adapter = VideoAdapter(dataManger.getFeeds())
+                runOnUiThread{
+                    binding.recyclerViewVideos.adapter = adapter
+                }
             } else {
-                mutableListOf()
             }
             Log.i("MAIN_ACTIVITY",feeds.toString())
         }
-        val adapter = VideoAdapter(dataManger.getFeeds())
-        binding.recyclerViewVideos.adapter = adapter
 
     }
 }

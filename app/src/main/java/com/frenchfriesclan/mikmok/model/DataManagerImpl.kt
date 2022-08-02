@@ -5,7 +5,6 @@ import com.frenchfriesclan.mikmok.model.response.Feed
 
 class DataManagerImpl : DataManager {
 
-
     fun getFeeds(): MutableList<Feed> {
         return Client.videoFeeds
     }

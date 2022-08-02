@@ -18,13 +18,14 @@ class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdap
     }
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val currentVideo = list[position]
+        val currentVideos = list[position].videos!![0]
         holder.binding.apply {
             textCategoryTitle.text = currentVideo.category
-            textVideoTitle.text = currentVideo.videos!![0].title
-            textVideoDescription.text = currentVideo.videos!![0].description
+            textVideoTitle.text = currentVideos.title
+            textVideoDescription.text = currentVideos.description
             textVideoYear.text = currentVideo.videos!![0].year.toString()
-            textVideoDirector.text = currentVideo.videos!![0].director
-            textVideoDuration.text = currentVideo.videos!![0].durationInSeconds?.toTimeForm()
+            textVideoDirector.text = currentVideos.director
+            textVideoDuration.text = currentVideos.durationInSeconds?.toTimeForm()
         }
     }
 
