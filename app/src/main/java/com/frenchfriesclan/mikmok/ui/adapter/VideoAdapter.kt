@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.frenchfriesclan.mikmok.R
 import com.frenchfriesclan.mikmok.databinding.VideoItemBinding
 import com.frenchfriesclan.mikmok.model.response.Feed
-import com.frenchfriesclan.mikmok.model.response.Video
+import com.frenchfriesclan.mikmok.util.Constant
+import com.frenchfriesclan.mikmok.util.extension.loadImageUrl
 import com.frenchfriesclan.mikmok.util.extension.toTimeForm
 
 class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdapter.VideoViewHolder>(){
@@ -17,28 +18,24 @@ class VideoAdapter(private val list: List<Feed>): RecyclerView.Adapter<VideoAdap
         return VideoViewHolder(view)
     }
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val currentVideo = list[position]
-        val currentVideos = list[position].videos!![0]
+        val currentCategory = list[position]
+        val currentVideos = list[position].videos!![Constant.VIDEO_OBJECT_INDEX]
         holder.binding.apply {
-            textCategoryTitle.text = currentVideo.category
+            textCategoryTitle.text = currentCategory.category
             textVideoTitle.text = currentVideos.title
             textVideoDescription.text = currentVideos.description
-            textVideoYear.text = currentVideo.videos!![0].year.toString()
+            textVideoYear.text = currentVideos.year.toString()
             textVideoDirector.text = currentVideos.director
             textVideoDuration.text = currentVideos.durationInSeconds?.toTimeForm()
+            imageCategory.loadImageUrl(currentCategory.categoryImage.toString())
+            imageVideoBackground.loadImageUrl(currentVideos.poster.toString())
         }
     }
 
     override fun getItemCount(): Int = list.size
 
-//    abstract class BaseViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
-//
-//    }
-
      class VideoViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem){
         val binding = VideoItemBinding.bind(viewItem)
     }
-
-
 
 }
