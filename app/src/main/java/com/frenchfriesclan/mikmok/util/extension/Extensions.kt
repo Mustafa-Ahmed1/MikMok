@@ -4,11 +4,12 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 
 fun Int.toTimeForm(): String {
-    var hours = this / 3600;
-    var minutes = (this % 3600) / 60;
-    var seconds = this % 60;
-    var timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-    return timeString
+    val hours = this / 3600
+    val minutes = (this % 3600) / 60
+    val seconds = this % 60
+
+    return if(this >= 3600) String.format("%02d:%02d:%02d", hours, minutes, seconds)
+    else String.format("%02d:%02d", minutes, seconds)
 }
 
 fun ImageView.loadImageUrl(url:String){
