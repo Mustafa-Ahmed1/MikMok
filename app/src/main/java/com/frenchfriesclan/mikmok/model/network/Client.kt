@@ -13,7 +13,7 @@ object Client {
     val videoFeeds = mutableListOf<Feed>()
 
 
-    fun requestVideoFeed(onSuccess :(isSuccess: Boolean) -> Unit) {
+    fun requestVideoFeed(setResponseState :(isSuccess: Boolean) -> Unit) {
         val request = Request.Builder()
             .url(Constant.REQUEST_URL)
             .build()
@@ -22,6 +22,7 @@ object Client {
 
             override fun onFailure(call: Call, e: IOException) {
                 Log.i("CLIENT",e.message.toString())
+                setResponseState(false)
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -31,7 +32,7 @@ object Client {
                         videoFeeds.add(feed)
                     }
                 }
-                onSuccess(true)
+                setResponseState(true)
             }
 
         }

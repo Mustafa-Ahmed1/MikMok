@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.frenchfriesclan.mikmok.R
 import com.frenchfriesclan.mikmok.databinding.VideoItemBinding
 import com.frenchfriesclan.mikmok.model.response.Feed
-import com.frenchfriesclan.mikmok.util.Constant
+import com.frenchfriesclan.mikmok.model.response.Video
 import com.frenchfriesclan.mikmok.util.extension.loadImageUrl
 import com.frenchfriesclan.mikmok.util.extension.toTimeForm
 
-class VideoAdapter(private val list: List<Feed>) :
+class VideoAdapter(private var list: Map<Video,Feed>) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
@@ -20,17 +20,17 @@ class VideoAdapter(private val list: List<Feed>) :
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val currentCategory = list[position]
-        val currentVideos = list[position].videos!![Constant.VIDEO_OBJECT_INDEX]
+        val currentVideo = list.keys.toList().get(position)
+        val currentFeed = list.getValue(currentVideo)
         holder.binding.apply {
-            textCategoryTitle.text = currentCategory.title
-            textVideoTitle.text = currentVideos.title
-            textVideoDescription.text = currentVideos.description
-            textVideoYear.text = currentVideos.year.toString()
-            textVideoDirector.text = currentVideos.director
-            textVideoDuration.text = currentVideos.durationInSeconds?.toTimeForm()
-            imageCategory.loadImageUrl(currentCategory.categoryImage.toString())
-            imageVideoBackground.loadImageUrl(currentVideos.poster.toString())
+            textCategoryTitle.text = currentFeed.category
+            textVideoTitle.text = currentVideo.title
+            textVideoDescription.text = currentVideo.description
+            textVideoYear.text = currentVideo.year.toString()
+            textVideoDirector.text = currentVideo.director
+            textVideoDuration.text = currentVideo.durationInSeconds?.toTimeForm()
+            imageCategory.loadImageUrl(currentFeed.categoryImage.toString())
+            imageVideoBackground.loadImageUrl(currentVideo.poster.toString())
         }
     }
 
