@@ -13,6 +13,7 @@ import com.frenchfriesclan.mikmok.util.extension.toTimeForm
 
 class VideoAdapter(private var list: Map<Video,Feed>) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+    val videoPlayer = VideoPlayer()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
@@ -31,7 +32,7 @@ class VideoAdapter(private var list: Map<Video,Feed>) :
             textVideoDuration.text = currentVideo.durationInSeconds?.toTimeForm()
             imageCategory.loadImageUrl(currentFeed.categoryImage.toString())
             imageVideoBackground.loadImageUrl(currentVideo.poster.toString())
-            VideoPlayer.initializePlayer(holder,currentVideo.videoUrl.toString())
+            videoPlayer.initializePlayer(holder,currentVideo.videoUrl.toString())
         }
     }
 

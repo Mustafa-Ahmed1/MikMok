@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 
-object VideoPlayer  {
+class VideoPlayer  {
     var exoPlayer : ExoPlayer? = null
     private var playWhenReady = true
     private var currentItem = 0
@@ -16,7 +16,7 @@ object VideoPlayer  {
             .also { exoPlayer ->
                 holder.binding.videoView.player = exoPlayer
                 val mediaItem = MediaItem.fromUri(currentVideoUrl)
-                VideoPlayer.exoPlayer?.setMediaItem(mediaItem)
+                exoPlayer?.setMediaItem(mediaItem)
                 exoPlayer.playWhenReady = playWhenReady
                 exoPlayer.seekTo(currentItem, playbackPosition)
                 exoPlayer.prepare()
