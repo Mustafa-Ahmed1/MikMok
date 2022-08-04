@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.frenchfriesclan.mikmok.R
-import com.frenchfriesclan.mikmok.databinding.VideoItemBinding
+import com.frenchfriesclan.mikmok.databinding.ItemVideoBinding
 import com.frenchfriesclan.mikmok.model.response.Feed
 import com.frenchfriesclan.mikmok.model.response.Video
 import com.frenchfriesclan.mikmok.util.extension.loadImageUrl
@@ -15,7 +15,7 @@ class VideoAdapter(private var list: Map<Video,Feed>) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.video_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
         return VideoViewHolder(view)
     }
 
@@ -31,13 +31,14 @@ class VideoAdapter(private var list: Map<Video,Feed>) :
             textVideoDuration.text = currentVideo.durationInSeconds?.toTimeForm()
             imageCategory.loadImageUrl(currentFeed.categoryImage.toString())
             imageVideoBackground.loadImageUrl(currentVideo.poster.toString())
+            VideoPlayer.initializePlayer(holder,currentVideo.videoUrl.toString())
         }
     }
 
     override fun getItemCount(): Int = list.size
 
     class VideoViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
-        val binding = VideoItemBinding.bind(viewItem)
+        val binding = ItemVideoBinding.bind(viewItem)
     }
 
 }

@@ -14,7 +14,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/video_item"
+        tools:listitem="@layout/item_video"
         tools:visibility="gone" />
 
 

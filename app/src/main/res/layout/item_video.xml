@@ -63,8 +63,11 @@
             app:layout_constraintBottom_toBottomOf="@id/image_category"
             app:layout_constraintStart_toStartOf="@id/category" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/video_url"
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/video_view"
+            app:resize_mode="fit"
+            app:use_controller="true"
+            app:controller_layout_id="@layout/exo_playback_control_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/spacing_very_large"
@@ -80,23 +83,13 @@
             app:strokeWidth="2dp" />
 
         <Button
-            android:id="@+id/button_play"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/ic_play_filled"
-            app:layout_constraintBottom_toBottomOf="@id/video_url"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/video_url" />
-
-        <Button
             android:id="@+id/button_thumb_up"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="@dimen/spacing_normal"
             android:background="@drawable/ic_thumbs_up"
-            app:layout_constraintStart_toStartOf="@id/video_url"
-            app:layout_constraintTop_toBottomOf="@id/video_url" />
+            app:layout_constraintStart_toStartOf="@id/video_view"
+            app:layout_constraintTop_toBottomOf="@id/video_view" />
 
         <Button
             android:id="@+id/button_thumb_down"
@@ -113,7 +106,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="@dimen/spacing_very_large"
             android:background="@drawable/ic_comment"
-            app:layout_constraintEnd_toEndOf="@id/video_url"
+            app:layout_constraintEnd_toEndOf="@id/video_view"
             app:layout_constraintTop_toTopOf="@id/button_thumb_up" />
 
         <TextView
