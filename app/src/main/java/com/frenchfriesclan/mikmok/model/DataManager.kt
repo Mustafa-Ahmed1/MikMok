@@ -1,8 +1,9 @@
 package com.frenchfriesclan.mikmok.model
 
 import com.frenchfriesclan.mikmok.model.response.Feed
+import com.frenchfriesclan.mikmok.model.response.Video
 
 
 interface DataManager {
-    fun requestVideoFeed(onSuccess: (isSuccess: Boolean) -> Unit)
+    fun getFeedsMap(): Map<Video, Feed>
 }
