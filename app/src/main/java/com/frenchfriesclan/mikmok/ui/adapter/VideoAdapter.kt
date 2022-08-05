@@ -21,7 +21,7 @@ class VideoAdapter(private var list: Map<Video,Feed>) :
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val currentVideo = list.keys.toList().get(position)
+        val currentVideo = list.keys.toList()[position]
         val currentFeed = list.getValue(currentVideo)
         holder.binding.apply {
             textCategoryTitle.text = currentFeed.category

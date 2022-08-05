@@ -33,7 +33,6 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/error"
-        tools:visibility="gone"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +41,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/error_cat" />
+        app:lottie_rawRes="@raw/error_cat"
+        tools:visibility="gone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
