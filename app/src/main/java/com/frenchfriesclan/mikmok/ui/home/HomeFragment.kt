@@ -21,7 +21,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val dataManger = DataManagerImpl()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.error.hide()
@@ -29,7 +28,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             if (isResponseSuccessful) {
                 val feeds = dataManger.getFeedsMap()
                 activity?.runOnUiThread {
-                    binding.recyclerViewVideos.adapter = VideoAdapter(feeds)
+                    if (adapter == null) {
+                        adapter = VideoAdapter(feeds)
+                    }
+                    binding.recyclerViewVideos.adapter = adapter
                     binding.loading.hide()
                 }
             } else {
@@ -58,5 +60,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onDetach()
         VideoPlayer.stopPlayer()
         Log.d("LIFE_CYCLE", "onDetach")
+    }
+
+    companion object {
+        var adapter: VideoAdapter? = null
     }
 }

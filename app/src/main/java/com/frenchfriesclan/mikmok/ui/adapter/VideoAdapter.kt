@@ -37,7 +37,8 @@ class VideoAdapter(private var videosMap: Map<Video, Feed>) :
             imageVideoBackground.loadImageUrl(currentVideo.poster.toString())
 
 
-            textVideoDirector.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+            imageVideoBackground.addOnAttachStateChangeListener(object :
+                View.OnAttachStateChangeListener {
                 override fun onViewAttachedToWindow(p0: View?) {
                     VideoPlayer.releasePlayer()
                     p0?.context?.let { context ->
@@ -47,12 +48,12 @@ class VideoAdapter(private var videosMap: Map<Video, Feed>) :
                             currentVideo.url.toString()
                         )
                     }
-                    Log.d("ATTACH_BEHAVIOUR","${p0?.context} attached")
+                    Log.d("ATTACH_BEHAVIOUR", "${p0?.context} attached")
 
                 }
 
                 override fun onViewDetachedFromWindow(p0: View?) {
-                    Log.d("ATTACH_BEHAVIOUR","${p0?.context} detached")
+                    Log.d("ATTACH_BEHAVIOUR", "${p0?.context} detached")
                 }
 
             })
@@ -62,8 +63,8 @@ class VideoAdapter(private var videosMap: Map<Video, Feed>) :
     }
 
     override fun getItemCount(): Int = videosMap.size
-}
 
+}
 
 
 class VideoViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
