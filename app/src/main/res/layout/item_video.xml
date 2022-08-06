@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,14 +32,14 @@
             android:id="@+id/image_category"
             android:layout_width="@dimen/image_category_scale"
             android:layout_height="@dimen/image_category_scale"
-            android:padding="2dp"
+            android:padding="@dimen/spacing_extra_small"
             android:scaleType="fitXY"
             android:src="@drawable/category_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/category_image_rounded"
+            app:shapeAppearanceOverlay="@style/CategoryImageRounded"
             app:strokeColor="@color/white_87"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="@dimen/stroke_normal" />
 
         <TextView
             android:id="@+id/category"
@@ -63,38 +64,41 @@
             app:layout_constraintBottom_toBottomOf="@id/image_category"
             app:layout_constraintStart_toStartOf="@id/category" />
 
-        <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/video_view"
-            app:resize_mode="fit"
-            app:use_controller="true"
-            app:controller_layout_id="@layout/exo_playback_control_view"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_video"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/spacing_very_large"
-            android:padding="2dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/mikmok_url2"
+            app:cardCornerRadius="@dimen/radius_normal"
             app:layout_constraintDimensionRatio="4:3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_category_title"
-            app:shapeAppearanceOverlay="@style/category_image_rounded"
             app:strokeColor="@color/white_87"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="@dimen/stroke_normal">
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:controller_layout_id="@layout/exo_playback_control_view"
+                app:use_controller="true"
+                tools:background="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/button_thumb_up"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_scale"
+            android:layout_height="@dimen/icon_scale"
             android:layout_marginTop="@dimen/spacing_normal"
             android:background="@drawable/ic_thumbs_up"
-            app:layout_constraintStart_toStartOf="@id/video_view"
-            app:layout_constraintTop_toBottomOf="@id/video_view" />
+            app:layout_constraintStart_toStartOf="@id/card_view_video"
+            app:layout_constraintTop_toBottomOf="@id/card_view_video" />
 
         <Button
             android:id="@+id/button_thumb_down"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_scale"
+            android:layout_height="@dimen/icon_scale"
             android:layout_marginStart="@dimen/spacing_very_large"
             android:background="@drawable/ic_thumbs_down"
             app:layout_constraintStart_toEndOf="@id/button_thumb_up"
@@ -102,11 +106,11 @@
 
         <Button
             android:id="@+id/button_comment"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_scale"
+            android:layout_height="@dimen/icon_scale"
             android:layout_marginStart="@dimen/spacing_very_large"
             android:background="@drawable/ic_comment"
-            app:layout_constraintEnd_toEndOf="@id/video_view"
+            app:layout_constraintEnd_toEndOf="@id/card_view_video"
             app:layout_constraintTop_toTopOf="@id/button_thumb_up" />
 
         <TextView
