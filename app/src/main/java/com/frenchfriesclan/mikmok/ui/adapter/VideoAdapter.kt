@@ -15,6 +15,7 @@ import com.frenchfriesclan.mikmok.util.extension.toTimeForm
 
 class VideoAdapter(private var videosMap: Map<Video, Feed>) :
     RecyclerView.Adapter<VideoViewHolder>() {
+    private val videosList = videosMap.keys.toList().shuffled()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
@@ -22,8 +23,7 @@ class VideoAdapter(private var videosMap: Map<Video, Feed>) :
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-
-        val currentVideo = videosMap.keys.toList()[position]
+        val currentVideo = videosList[position]
         val currentFeed = videosMap.getValue(currentVideo)
 
         holder.binding.apply {
@@ -62,7 +62,6 @@ class VideoAdapter(private var videosMap: Map<Video, Feed>) :
     }
 
     override fun getItemCount(): Int = videosMap.size
-
 }
 
 
