@@ -1,5 +1,6 @@
 package com.frenchfriesclan.mikmok.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import com.frenchfriesclan.mikmok.model.response.Video
 import com.frenchfriesclan.mikmok.util.extension.loadImageUrl
 import com.frenchfriesclan.mikmok.util.extension.toTimeForm
 
-class VideoAdapter(private var list: Map<Video,Feed>) :
+class VideoAdapter(private var videosMap: Map<Video, Feed>) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
@@ -20,8 +21,8 @@ class VideoAdapter(private var list: Map<Video,Feed>) :
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val currentVideo = list.keys.toList().get(position)
-        val currentFeed = list.getValue(currentVideo)
+        val currentVideo = videosMap.keys.toList()[position]
+        val currentFeed = videosMap.getValue(currentVideo)
         holder.binding.apply {
             textCategoryTitle.text = currentFeed.category
             textVideoTitle.text = currentVideo.title
@@ -31,11 +32,30 @@ class VideoAdapter(private var list: Map<Video,Feed>) :
             textVideoDuration.text = currentVideo.durationInSeconds?.toTimeForm()
             imageCategory.loadImageUrl(currentFeed.categoryImage.toString())
             imageVideoBackground.loadImageUrl(currentVideo.poster.toString())
-            VideoPlayer.initializePlayer(holder,currentVideo.videoUrl.toString())
+            videoView.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+                override fun onViewAttachedToWindow(p0: View?) {
+                    VideoPlayer.releasePlayer()
+                    p0?.context?.let { context ->
+                        VideoPlayer.initializePlayer(
+                            holder,
+                            context,
+                            currentVideo.videoUrl.toString()
+                        )
+                    }
+                    Log.d("ViewAttached","${p0?.context} attached")
+
+                }
+
+                override fun onViewDetachedFromWindow(p0: View?) {
+                    Log.d("ViewAttached","${p0?.context} detached")
+                }
+
+            })
         }
     }
 
-    override fun getItemCount(): Int = list.size
+
+    override fun getItemCount(): Int = videosMap.size
 
     class VideoViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
         val binding = ItemVideoBinding.bind(viewItem)

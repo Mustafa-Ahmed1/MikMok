@@ -1,39 +1,64 @@
 package com.frenchfriesclan.mikmok.ui.adapter
 
+import android.content.Context
 import android.util.Log
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 
-object VideoPlayer  {
-    var exoPlayer : ExoPlayer? = null
+object VideoPlayer {
+    var exoPlayer: ExoPlayer? = null
     private var playWhenReady = true
     private var currentItem = 0
     private var playbackPosition = 0L
 
-    fun initializePlayer(holder: VideoAdapter.VideoViewHolder, currentVideoUrl: String) {
-        exoPlayer = ExoPlayer.Builder(holder.binding.root.context)
+    fun initializePlayer(
+        holder: VideoAdapter.VideoViewHolder,
+        context: Context,
+        currentVideoUrl: String
+    ) {
+        exoPlayer = ExoPlayer.Builder(context)
             .build()
             .also { exoPlayer ->
                 holder.binding.videoView.player = exoPlayer
                 val mediaItem = MediaItem.fromUri(currentVideoUrl)
-                VideoPlayer.exoPlayer?.setMediaItem(mediaItem)
+                exoPlayer.setMediaItem(mediaItem)
                 exoPlayer.playWhenReady = playWhenReady
                 exoPlayer.seekTo(currentItem, playbackPosition)
+                exoPlayer.repeatMode = Player.REPEAT_MODE_ONE
                 exoPlayer.prepare()
+                exoPlayer.play()
             }
+        Log.i("VIDEO_PLAYER", "now playing ${holder.binding.textVideoTitle.text.toString()}")
     }
 
 
-     fun releasePlayer() {
+    fun releasePlayer() {
+        Log.d("VIDEO_PLAYER", "releasing player ${exoPlayer.toString()}")
 
         exoPlayer?.let { exoPlayer ->
-            Log.i("PLAYER_ACTIVITY", "current position: ${exoPlayer.currentPosition} , current media item index : ${exoPlayer.currentMediaItemIndex}, play when ready : ${exoPlayer.playWhenReady}")
-            playbackPosition = exoPlayer.currentPosition
-            currentItem = exoPlayer.currentMediaItemIndex
-            playWhenReady = exoPlayer.playWhenReady
+            exoPlayer.stop()
             exoPlayer.release()
+            Log.d("VIDEO_PLAYER", "released player ${exoPlayer.toString()}")
         }
         exoPlayer = null
     }
 
+    fun pausePlayer() {
+        exoPlayer?.pause()
+    }
+
+    fun resumePlayer() {
+        exoPlayer?.play()
+    }
+
+
+    fun stopPlayer() {
+        exoPlayer?.let { exoPlayer ->
+            playbackPosition = exoPlayer.currentPosition
+            currentItem = exoPlayer.currentMediaItemIndex
+            playWhenReady = exoPlayer.playWhenReady
+            exoPlayer.stop()
+        }
+    }
 }
