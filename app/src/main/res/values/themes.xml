@@ -8,4 +8,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
+
+    <style name="splashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowSplashscreenContent" xmlns:tools="http://schemas.android.com/tools" tools:targetApi="o">@drawable/splash_theme</item>
+        <item name="android:statusBarColor">#111111</item>
+    </style>
+
 </resources>
