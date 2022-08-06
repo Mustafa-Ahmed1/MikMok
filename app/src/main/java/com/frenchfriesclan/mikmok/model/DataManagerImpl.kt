@@ -6,17 +6,21 @@ import com.frenchfriesclan.mikmok.model.response.Feed
 import com.frenchfriesclan.mikmok.model.response.Video
 
 class DataManagerImpl : DataManager, ApiService {
-    val videoFeeds: MutableList<Feed>
+    private val videoFeeds: MutableList<Feed>
         get() = Client.videoFeeds
+    private val feedsMap = mutableMapOf<Video, Feed>()
 
     override fun getFeedsMap(): Map<Video, Feed> {
-        val feedsMap = mutableMapOf<Video, Feed>()
+        mapVideoFeeds()
+        return feedsMap
+    }
+
+    private fun mapVideoFeeds() {
         videoFeeds.forEach { feed ->
             feed.videos?.forEach { video ->
                 feedsMap[video] = feed
             }
         }
-        return feedsMap
     }
 
     override fun requestVideoFeed(setResponseState: (isSuccess: Boolean) -> Unit) {

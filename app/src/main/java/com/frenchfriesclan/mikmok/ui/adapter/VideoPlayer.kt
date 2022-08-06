@@ -13,7 +13,7 @@ object VideoPlayer {
     private var playbackPosition = 0L
 
     fun initializePlayer(
-        holder: VideoAdapter.VideoViewHolder,
+        holder: VideoViewHolder,
         context: Context,
         currentVideoUrl: String
     ) {
@@ -31,27 +31,6 @@ object VideoPlayer {
             }
         Log.i("VIDEO_PLAYER", "now playing ${holder.binding.textVideoTitle.text.toString()}")
     }
-
-
-    fun releasePlayer() {
-        Log.d("VIDEO_PLAYER", "releasing player ${exoPlayer.toString()}")
-
-        exoPlayer?.let { exoPlayer ->
-            exoPlayer.stop()
-            exoPlayer.release()
-            Log.d("VIDEO_PLAYER", "released player ${exoPlayer.toString()}")
-        }
-        exoPlayer = null
-    }
-
-    fun pausePlayer() {
-        exoPlayer?.pause()
-    }
-
-    fun resumePlayer() {
-        exoPlayer?.play()
-    }
-
 
     fun stopPlayer() {
         exoPlayer?.let { exoPlayer ->

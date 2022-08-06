@@ -1,8 +1,14 @@
 package com.frenchfriesclan.mikmok.util.extension
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.frenchfriesclan.mikmok.ui.adapter.VideoPlayer
+import java.time.Duration
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 fun Int.toTimeForm(): String {
     val hours = this / 3600
@@ -23,3 +29,25 @@ fun View.show() {
 fun ImageView.loadImageUrl(url:String){
     Glide.with(this.context).load(url).into(this)
 }
+
+fun VideoPlayer.resumePlayer() {
+    this.exoPlayer?.play()
+}
+
+fun VideoPlayer.releasePlayer() {
+    Log.d("VIDEO_PLAYER", "releasing player ${exoPlayer.toString()}")
+    exoPlayer?.let { exoPlayer ->
+        exoPlayer.stop()
+        exoPlayer.release()
+        Log.d("VIDEO_PLAYER", "released player ${exoPlayer}")
+    }
+    exoPlayer = null
+}
+
+fun VideoPlayer.pausePlayer() {
+    exoPlayer?.pause()
+}
+
+
+
+

@@ -11,6 +11,8 @@ import com.frenchfriesclan.mikmok.ui.adapter.VideoAdapter
 import com.frenchfriesclan.mikmok.ui.adapter.VideoPlayer
 import com.frenchfriesclan.mikmok.ui.base.BaseFragment
 import com.frenchfriesclan.mikmok.util.extension.hide
+import com.frenchfriesclan.mikmok.util.extension.pausePlayer
+import com.frenchfriesclan.mikmok.util.extension.resumePlayer
 import com.frenchfriesclan.mikmok.util.extension.show
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
